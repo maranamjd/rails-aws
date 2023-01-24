@@ -242,7 +242,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capistrano
-  capistrano-bundler
   capistrano-db-tasks
   capistrano-rails
   capistrano-rbenv
