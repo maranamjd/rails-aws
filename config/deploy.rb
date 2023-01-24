@@ -21,7 +21,7 @@ set :deploy_to, "/home/aws-rails/rails-aws"
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 append :linked_files, "config/database.yml", 'config/master.key'
@@ -41,6 +41,17 @@ set :keep_assets, 3
 
 set :db_remote_clean, true
 set :db_local_clean, true
+
+set :bundle_binstubs, nil # do not use shared bundle path between releases
+set :bundle_path,     nil # trust bundle config to set the path
+set :bundle_flags,    nil # be verbose, don't use deployment mode
+set :rvm_map_bins, %w{ gem rake ruby rails bundle }
+
+set :precompile_env, 'production'
+set :assets_dir, "public/assets"
+set :packs_dir, "public/packs"
+set :rsync_cmd, "rsync -av --delete"
+set :storage_dir, "storage/"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
