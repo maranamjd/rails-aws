@@ -10,7 +10,7 @@ set :repo_url, "git@github.com:maranamjd/rails-aws.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/rails/rails-aws"
+set :deploy_to, "/home/aws-rails/rails-aws"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
