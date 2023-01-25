@@ -3,6 +3,7 @@ set :rails_env, 'production'
 
 set :application, "rails-aws"
 set :branch, "main"
+set :user, "rails-aws"
 
 set :full_app_name, "rails-aws"
 set :deploy_to, "/home/rails-aws/#{fetch :application}"
