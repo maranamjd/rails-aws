@@ -1,2 +1,19 @@
-server "43.206.238.230", user: "aws-rails", roles: %w{web app db}
+server "43.206.238.230", user: "rails-aws", roles: %w{web app db}
 set :rails_env, 'production'
+
+set :application, "rails-aws"
+set :branch, "main"
+
+set :full_app_name, "rails-aws"
+set :deploy_to, "/home/rails-aws/#{fetch :application}"
+
+append :linked_files, "config/database.yml", 'config/master.key'
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor", "storage"
+
+set :ssh_options, { forward_agent: true }
+
+set :rbenv_path, "/home/#{fetch(:user)}/.rbenv"
+set :rbenv_type, :user
+set :rbenv_ruby, "3.1.2"
+
+set :tmp_dir, "/home/#{fetch(:user)}/.capistrano-tmp"

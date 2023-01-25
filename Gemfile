@@ -57,6 +57,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-db-tasks', require: false
   gem 'capistrano-rails'
+  gem 'capistrano-passenger'
   gem 'capistrano-rbenv'
   gem "web-console"
 end
