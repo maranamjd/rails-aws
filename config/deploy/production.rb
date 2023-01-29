@@ -19,8 +19,8 @@ set :rbenv_ruby, "3.1.2"
 
 
 # init service name
-set :service, 'nginx'
-set :worker_service, 'redis-server'
+set :service, 'rails-aws'
+set :worker_service, 'rails-aws.sidekiq'
 
 
 set :tmp_dir, "/home/#{fetch(:user)}/.capistrano-tmp"
