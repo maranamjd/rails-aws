@@ -51,7 +51,6 @@ set :storage_dir, "storage/"
 
 
 namespace :deploy do
-
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -71,5 +70,47 @@ namespace :deploy do
       # end
     end
   end
+end
 
+
+namespace :service do
+  task :restart do
+    on roles(:app), in: :sequence, wait: 3 do
+      execute :sudo, "service #{fetch :service} stop"
+      execute :sudo, "service #{fetch :service} start"
+    end
+  end
+
+  task :start do
+    on roles(:app), in: :sequence, wait: 3 do
+      execute :sudo, "service #{fetch :service} start"
+    end
+  end
+
+  task :stop do
+    on roles(:app), in: :sequence, wait: 3 do
+      execute :sudo, "service #{fetch :service} stop"
+    end
+  end
+end
+
+namespace :worker do
+  task :restart do
+    on roles(:app), in: :sequence, wait: 3 do
+      execute :sudo, "service #{fetch :worker_service} stop"
+      execute :sudo, "service #{fetch :worker_service} start"
+    end
+  end
+
+  task :start do
+    on roles(:app), in: :sequence, wait: 3 do
+      execute :sudo, "service #{fetch :worker_service} start"
+    end
+  end
+
+  task :stop do
+    on roles(:app), in: :sequence, wait: 3 do
+      execute :sudo, "service #{fetch :worker_service} stop"
+    end
+  end
 end

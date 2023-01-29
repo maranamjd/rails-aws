@@ -17,4 +17,10 @@ set :rbenv_path, "/home/#{fetch(:user)}/.rbenv"
 set :rbenv_type, :user
 set :rbenv_ruby, "3.1.2"
 
+
+# init service name
+set :service, 'nginx'
+set :worker_service, 'redis-server'
+
+
 set :tmp_dir, "/home/#{fetch(:user)}/.capistrano-tmp"
