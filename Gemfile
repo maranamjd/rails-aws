@@ -70,3 +70,5 @@ group :test do
 end
 
 gem "sidekiq", "~> 7.0"
+
+gem "rack-cors", "~> 1.1"
