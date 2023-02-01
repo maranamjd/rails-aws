@@ -66,7 +66,6 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -90,4 +89,29 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  cache_store_config = {
+    url: Rails.application.credentials.dig(:production, :redis_url) || "redis://localhost:6379",
+    password: Rails.application.credentials.dig(:production, :redis_password),
+    # error_handler: ->(method:, returning:, exception:) do
+    #   Bugsnag.notify(exception)
+    # end
+  }
+  cache_store_config.except!(:password) if cache_store_config[:password].blank?
+  config.cache_store = :redis_cache_store, cache_store_config
+
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: Rails.application.credentials.dig(:app, :domain) }
+  config.action_mailer.default_options = { from: Rails.application.credentials.dig(:app, :mail_delivery_from) }
+  # config.action_mailer.asset_host = ENV.fetch("RAILS_PRODUCTION_DOMAIN", "default_value")
+  config.action_mailer.smtp_settings = {
+    address: Rails.application.credentials.dig(:production, :mailer_server),
+    port: 587,
+    user_name: Rails.application.credentials.dig(:production, :mailer_username),
+    password: Rails.application.credentials.dig(:production, :mailer_password),
+    authentication: :login
+  }
 end

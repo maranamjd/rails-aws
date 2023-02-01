@@ -70,4 +70,18 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = { address: "127.0.0.1", port: 1025 }
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   config.action_mailer.delivery_method = :smtp
+
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :smtp
+  # # config.action_mailer.default_url_options = { host: Rails.application.credentials.dig(:app, :domain) }
+  # config.action_mailer.default_options = { from: Rails.application.credentials.dig(:app, :mail_delivery_from) }
+  # # config.action_mailer.asset_host = ENV.fetch("RAILS_PRODUCTION_DOMAIN", "default_value")
+  # config.action_mailer.smtp_settings = {
+  #   address: Rails.application.credentials.dig(:production, :mailer_server),
+  #   port: 587,
+  #   user_name: Rails.application.credentials.dig(:production, :mailer_username),
+  #   password: Rails.application.credentials.dig(:production, :mailer_password),
+  #   authentication: :login
+  # }
 end
