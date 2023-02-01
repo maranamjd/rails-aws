@@ -2,7 +2,11 @@ class PublishPostJob < ApplicationJob
   queue_as :default
 
   def perform(post_id)
-    sleep 180
-    post = Post.find_by(id: post_id).publish
+    post = Post.find_by(id: post_id)
+    post.publish
+
+    PostMailer.with(post: post)
+              .post_published_notification
+              .deliver_later
   end
 end

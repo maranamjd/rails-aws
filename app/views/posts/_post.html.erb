@@ -1,9 +1,9 @@
 <div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-    <%= post.is_published ? "published" : "not published" %>
-  </p>
+  <div style="display: flex; flex-direction: column">
+    <strong><%= post.title %></strong>
+    <span><%= post.user_email %></span>
+    <span><%= post.is_published ? "published" : "not published" %></span>
+  </div>
 
   <p>
     <strong>Body:</strong>
